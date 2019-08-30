@@ -22,31 +22,31 @@ SidebarMenu.defaultProps = {
   groups: [{
     links: [{
       name: 'Home',
-      url: 'http://example.com',
+      url: '#',
       links: [{
         name: 'Activity',
-        url: 'http://msn.com',
+        url: '#',
       }, {
         name: 'News',
-        url: 'http://msn.com',
+        url: '#',
       }],
       isExpanded: true,
     }, {
       name: 'Documents',
-      url: 'http://example.com',
+      url: '#',
       isExpanded: true,
     }, {
       name: 'Pages',
-      url: 'http://msn.com',
+      url: '#',
     }, {
       name: 'Notebook',
-      url: 'http://msn.com',
+      url: '#',
     }, {
       name: 'Long Name Test for elipsis. Longer than 12em!',
-      url: 'http://example.com',
+      url: '#',
     }, {
       name: 'Edit Link',
-      url: 'http://example.com',
+      url: '#',
       iconClassName: 'ms-Icon--Edit',
     }, {
       name: 'Edit',
