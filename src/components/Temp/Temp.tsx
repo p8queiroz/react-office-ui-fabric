@@ -32,13 +32,11 @@ export default class Temp extends React.Component<ITempProps, ITempState> {
       </div>
     )}
 
-
     handleChange() {
         alert('hello!')
         this.setState({Title: "Web Developer"});
     }
 }
-
 
 Temp.defaultProps = {
     Name: 'Paulo',

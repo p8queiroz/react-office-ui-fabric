@@ -1,7 +1,6 @@
 import React  from 'react'
 import {Nav, INavLinkGroup} from 'office-ui-fabric-react/lib/Nav'
 
-
 interface ISidebarMenuProps {
   groups: INavLinkGroup[],
   expanded: string,

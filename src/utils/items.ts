@@ -51,19 +51,34 @@ export const menuItems = [
   onClick: () => console.log('Download')
 }]
 
-export const farMenuItems = [{
-  key: 'sort',
-  name: 'Sort',
-  icon: 'SortLines',
-  onClick: identity
-}, {
-  key: 'tile',
-  name: 'Grid view',
-  icon: 'Tiles',
-  onClick: identity
-}, {
-  key: 'info',
-  name: 'Info',
-  icon: 'Info',
-  onClick: identity
-}]
+export const farMenuItems = [
+  {
+    key: 'sort',
+    name: 'Sort',
+    ariaLabel: 'Sort',
+    iconProps: {
+      iconName: 'SortLines'
+    },
+    onClick: () => console.log('Sort')
+  },
+  {
+    key: 'tile',
+    name: 'Grid view',
+    ariaLabel: 'Grid view',
+    iconProps: {
+      iconName: 'Tiles'
+    },
+    iconOnly: true,
+    onClick: () => console.log('Tiles')
+  },
+  {
+    key: 'info',
+    name: 'Info',
+    ariaLabel: 'Info',
+    iconProps: {
+      iconName: 'Info'
+    },
+    iconOnly: true,
+    onClick: () => console.log('Info')
+  }
+]

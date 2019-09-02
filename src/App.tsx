@@ -1,9 +1,10 @@
 import React from 'react';
 import {Fabric} from 'office-ui-fabric-react/lib/Fabric'
-import Content from '../src/components/Content/Content'
-import NavBar from '../src/components/NavBar/NavBar'
-import SidebarMenu from '../src/components/SideBarMenu/SidebarMenu'
-import Footer from '../src/components/Footer/Footer'
+import Content from './components/content-component/Content/Content'
+//import Sales from './components/business-component/Sales/Sales'
+import NavBar from './components/content-component/NavBar/NavBar'
+import SidebarMenu from './components/content-component/SideBarMenu/SidebarMenu'
+import Footer from './components/content-component/Footer/Footer'
 //import Temp from '../src/components/Temp/Temp'
 import './index.css'
 

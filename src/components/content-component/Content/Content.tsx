@@ -8,9 +8,9 @@ import {
 } from 'office-ui-fabric-react/lib/utilities/selection'
 import {Check} from 'office-ui-fabric-react/lib/Check'
 import { CommandBar } from 'office-ui-fabric-react/lib/CommandBar';
-import {identity, createListItems} from '../../utils/index'
+import {identity, createListItems} from '../../../utils/index'
 import {IContextualMenuItem} from 'office-ui-fabric-react/lib/ContextualMenu'
-import {menuItems as defaultMenuItems, farMenuItems as defaultFarMenuItems} from '../../utils/items'
+import {menuItems as defaultMenuItems, farMenuItems as defaultFarMenuItems} from '../../../utils/items'
 import './Content.css'
 
 interface IContentProps extends React.Props<IContentProps> {
@@ -48,7 +48,7 @@ export default class Content extends React.Component<IContentProps, IContentStat
   }
 
   _onSelectionChanged = () => {
-   // if (this._hasMounted) this.forceUpdate()
+    //console.log('_onSelectionChanged...')
   }
 
   render() {
@@ -67,22 +67,23 @@ export default class Content extends React.Component<IContentProps, IContentStat
           ariaLabel={'Use left and right arrow keys to navigate between commands'}
         />
         <div className="selection">
-          <MarqueeSelection selection={selection} isEnabled={selectionMode === SelectionMode.multiple}>
-              <SelectionZone selection={selection}
+          <MarqueeSelection selection={selection} isEnabled={selectionMode === SelectionMode.single}>
+              <SelectionZone 
+                selection={selection}
                 selectionMode={selectionMode}
-                onItemInvoked={item => alert(item)}>
-              {items.map((item, index) => (
-                <div key={index} className="selection-item" data-selection-index={index}>
-                {(selectionMode !== SelectionMode.none) && (
-                  <span className="check" data-selection-toggle={true}>
-                    <Check checked={selection.isIndexSelected(index)} />
-                  </span>
-                )}
-                  <span className="name">{item.name}</span>
-                </div>
-              ))}  
+                onItemInvoked={item => console.log(item)}>
+                  {items.map((item, index) => (
+                    <div key={index} className="selection-item" data-selection-index={index}>
+                    {(selectionMode !== SelectionMode.none) && (
+                      <span className="check" data-selection-toggle={true}>
+                        <Check checked={selection.isIndexSelected(index)} />
+                      </span>
+                    )}
+                      <span className="name">{item.name}</span>
+                    </div>
+                  ))}  
               </SelectionZone>
-            </MarqueeSelection>
+          </MarqueeSelection>
         </div>
       </div>
     )
