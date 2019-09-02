@@ -10,7 +10,6 @@ interface ISidebarMenuProps {
 
 const SidebarMenu = ({groups, expanded, collapsed} : ISidebarMenuProps) => (
   <div className='SidebarMenu'>
-    SIDEBAR COMPONENT
     <Nav groups={groups}
       expandedStateText={expanded}
       collapsedStateText={collapsed}

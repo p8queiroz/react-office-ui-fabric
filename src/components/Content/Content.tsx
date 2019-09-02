@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Breadcrumb } from 'office-ui-fabric-react/lib/Breadcrumb';
+import {Breadcrumb, IBreadcrumbItem} from 'office-ui-fabric-react/lib/Breadcrumb'
 import {MarqueeSelection} from 'office-ui-fabric-react/lib/MarqueeSelection'
 import {
   Selection,
@@ -7,34 +7,32 @@ import {
   SelectionZone,
 } from 'office-ui-fabric-react/lib/utilities/selection'
 import {Check} from 'office-ui-fabric-react/lib/Check'
-import {/*identity,*/ createListItems} from '../../utils/index'
-//import {menuItems as defaultMenuItems, farMenuItems as defaultFarMenuItems} from '../../utils/items'
+import { CommandBar } from 'office-ui-fabric-react/lib/CommandBar';
+import {identity, createListItems} from '../../utils/index'
+import {IContextualMenuItem} from 'office-ui-fabric-react/lib/ContextualMenu'
+import {menuItems as defaultMenuItems, farMenuItems as defaultFarMenuItems} from '../../utils/items'
 import './Content.css'
 
-interface IContentProps {
-    /*maxBreadcrumbs?: 3,
-    breadcrumbs: [
-      {text: 'Files', 'key': 'Files'},
-      {text: 'This is folder 1', 'key': 'f1'},
-      {text: 'This is folder 2', 'key': 'f2'},
-      {text: 'This is folder 3', 'key': 'f3'},
-      {text: 'This is folder 4', 'key': 'f4'},
-      {text: 'Home', 'key': 'f5'},
-    ],
-    menuItems: [],
-    farMenuItems: [],*/
+interface IContentProps extends React.Props<IContentProps> {
+  items?: IBreadcrumbItem[]
+  menuItems: IContextualMenuItem[]
+  farMenuItems: IContextualMenuItem[]
+  maxBreadcrumbs: number
+  breadcrumbs: any[]
 }
 
 interface IContentState {
-  items: any;
-  selection: any;
-  selectionMode: any;
-  canSelect: any;
+  items: any[]
+  selection: Selection
+  selectionMode: SelectionMode
+  canSelect: string
 }
 
-class Content extends React.Component<any, any> {
+export default class Content extends React.Component<IContentProps, IContentState> {
 
-  constructor(props: any) {
+  static defaultProps: IContentProps
+
+  constructor(props: IContentProps) {
     super(props);
     this.state = {
       items: createListItems(200),
@@ -46,7 +44,7 @@ class Content extends React.Component<any, any> {
   }
 
   componentDidMount() {
-    //this._hasMounted = true
+    console.log('component did mount...')
   }
 
   _onSelectionChanged = () => {
@@ -54,50 +52,54 @@ class Content extends React.Component<any, any> {
   }
 
   render() {
-    const { maxBreadcrumbs} = this.props
+    const {breadcrumbs, maxBreadcrumbs, menuItems, farMenuItems} = this.props
     const {items, selection, selectionMode} = this.state
     return (
       <div className="container">
         <Breadcrumb 
           className="breadcrumbs" 
-          items={[
-            {text: 'Files', 'key': 'Files'},
-            {text: 'This is folder 1', 'key': 'f1'},
-            {text: 'This is folder 2', 'key': 'f2'},
-            {text: 'This is folder 3', 'key': 'f3'},
-            {text: 'This is folder 4', 'key': 'f4'},
-            {text: 'Home', 'key': 'f5'},
-          ]}
+          items={breadcrumbs}
           maxDisplayedItems={maxBreadcrumbs}
         />
-        <div> CONTENT COMPONENT </div>
+        <CommandBar
+          items={menuItems}
+          farItems={farMenuItems}
+          ariaLabel={'Use left and right arrow keys to navigate between commands'}
+        />
         <div className="selection">
           <MarqueeSelection selection={selection} isEnabled={selectionMode === SelectionMode.multiple}>
-            <SelectionZone selection={selection}
-              selectionMode={selectionMode}
-              onItemInvoked={item => alert(item)}>
-            {items.map((item: { name: React.ReactNode; }, index: string | number | undefined) => (
-              <div key={index} className="selection-item" data-selection-index={index}>
-              {(selectionMode !== SelectionMode.none) && (
-                <span className="check" data-selection-toggle={true}>
-                  <Check checked={selection.isIndexSelected(index)} />
-                </span>
-              )}
-                <span className="name">{item.name}</span>
-              </div>
-            ))}  
-            </SelectionZone>
-          </MarqueeSelection>
+              <SelectionZone selection={selection}
+                selectionMode={selectionMode}
+                onItemInvoked={item => alert(item)}>
+              {items.map((item, index) => (
+                <div key={index} className="selection-item" data-selection-index={index}>
+                {(selectionMode !== SelectionMode.none) && (
+                  <span className="check" data-selection-toggle={true}>
+                    <Check checked={selection.isIndexSelected(index)} />
+                  </span>
+                )}
+                  <span className="name">{item.name}</span>
+                </div>
+              ))}  
+              </SelectionZone>
+            </MarqueeSelection>
         </div>
       </div>
     )
   }
 
-  /*private _onBreadcrumbItemClicked = (ev: React.MouseEvent<HTMLElement>, item: IBreadcrumbItem): void => {
-    console.log(`Breadcrumb item with key "${item.key}" has been clicked.`);
-  };*/
+}
 
+Content.defaultProps = {
+  maxBreadcrumbs: 4,
+  breadcrumbs: [
+    {text: 'This is folder 1', 'key': 'f1', onClick: identity},
+    {text: 'This is folder 2', 'key': 'f2', onClick: identity},
+    {text: 'This is folder 3', 'key': 'f3', onClick: identity},
+    {text: 'Home', 'key': 'f5', onClick: identity},
+  ],
+  menuItems: defaultMenuItems,
+  farMenuItems: defaultFarMenuItems,
 }
 
 
-export default Content

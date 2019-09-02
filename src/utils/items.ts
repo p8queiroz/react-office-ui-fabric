@@ -1,62 +1,54 @@
 import {identity} from './index'
 
-export const menuItems = [{
-  key: 'newItem',
-  name: 'Selection Mode',
-  ariaLabel: 'Selection Mode',
-  onClick: identity,
-  items: [{
-    key: 'selectionModeNone',
-    name: 'None',
-    canCheck: true,
-    checked: false,
-  }, {
-    key: 'selectionModeSingle',
-    name: 'Single Mode',
-    canCheck: true,
-    checked: true,
-  }, {
-    key: 'selectionModeMulti',
-    name: 'Multi Mode',
-    canCheck: true,
-    checked: false,
-  }]
-}, {
+export const menuItems = [
+  {
+    key: 'newItem',
+    name: 'New',
+    cacheKey: 'myCacheKey', // changing this key will invalidate this items cache
+    iconProps: {
+      iconName: 'Add',
+    },
+    ariaLabel: 'New',
+    subMenuProps: {
+      items: [
+        {
+          key: 'emailMessage',
+          name: 'Email message',
+          iconProps: {
+            iconName: 'Mail'
+          },
+        },
+        {
+          key: 'calendarEvent',
+          name: 'Calendar event',
+          iconProps: {
+            iconName: 'Calendar'
+          }
+        }
+      ]
+    }
+  }
+, {
   key: 'upload',
   name: 'Upload',
-  icon: 'Upload',
-  onClick: identity,
+  iconProps: {
+    iconName: 'Upload'
+  },
+  href: '#'
 }, {
   key: 'share',
   name: 'Share',
-  icon: 'Share',
-  onClick: identity
+  iconProps: {
+    iconName: 'Share'
+  },
+  onClick: () => console.log('Share')
 }, {
   key: 'download',
   name: 'Download',
-  icon: 'Download',
-  onClick: identity
-}, {
-  key: 'move',
-  name: 'Move to...',
-  icon: 'MoveToFolder',
-  onClick: identity
-}, {
-  key: 'copy',
-  name: 'Copy to...',
-  icon: 'Copy',
-  onClick:identity
-}, {
-  key: 'rename',
-  name: 'Rename...',
-  icon: 'Edit',
-  onClick:identity
-}, {
-  key: 'disabled',
-  name: 'Disabled...',
-  icon: 'Cancel',
-  disabled: true,
-  onClick:identity
+  iconProps: {
+    iconName: 'Download'
+  },
+  onClick: () => console.log('Download')
 }]
 
 export const farMenuItems = [{
