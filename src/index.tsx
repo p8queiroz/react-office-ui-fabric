@@ -4,6 +4,9 @@ import { App } from './App';
 import { FluentCustomizations } from '@uifabric/fluent-theme';
 import { Customizer, mergeStyles } from 'office-ui-fabric-react';
 import * as serviceWorker from './serviceWorker';
+import { initializeIcons } from 'office-ui-fabric-react/lib/Icons';
+initializeIcons(/* optional base url */);
+
 
 // Inject some global styles
 mergeStyles({
