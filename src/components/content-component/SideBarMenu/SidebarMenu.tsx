@@ -24,33 +24,39 @@ SidebarMenu.defaultProps = {
       links: [{
         name: 'Activity',
         url: '#',
+        onClick: () => { console.log('Activity...') }
       }, {
         name: 'News',
         url: '#',
+        onClick: () => { console.log('News...') }
       }],
       isExpanded: true,
-    }, {
+      icon: 'Add'
+    }, 
+    {
       name: 'Documents',
       url: '#',
+      icon: 'Add',
       isExpanded: true,
-    }, {
+      onClick: () => { console.log('Documents...') }
+    }, 
+    {
       name: 'Pages',
       url: '#',
-    }, {
-      name: 'Notebook',
-      url: '#',
-    }, {
+      icon: 'Add',
+      onClick: () => { console.log('pages...') }
+    }, 
+    {
       name: 'Long Name Test for elipsis. Longer than 12em!',
       url: '#',
-    }, {
-      name: 'Edit Link',
-      url: '#',
-      iconClassName: 'ms-Icon--Edit',
-    }, {
+      icon: 'Add',
+      onClick: () => { console.log('long name...') }
+    },
+    {
       name: 'Edit',
       url: '#',
       icon: 'Edit',
-      onClick: () => {},
+      onClick: () => { console.log('edit...') },
     }]
   }],
   expanded: 'expanded',

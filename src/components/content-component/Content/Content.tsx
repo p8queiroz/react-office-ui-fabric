@@ -44,7 +44,7 @@ export default class Content extends React.Component<IContentProps, IContentStat
   }
 
   componentDidMount() {
-    console.log('component did mount...')
+    //console.log('component did mount...')
   }
 
   _onSelectionChanged = () => {
@@ -94,13 +94,17 @@ export default class Content extends React.Component<IContentProps, IContentStat
 Content.defaultProps = {
   maxBreadcrumbs: 4,
   breadcrumbs: [
-    {text: 'This is folder 1', 'key': 'f1', onClick: identity},
-    {text: 'This is folder 2', 'key': 'f2', onClick: identity},
-    {text: 'This is folder 3', 'key': 'f3', onClick: identity},
-    {text: 'Home', 'key': 'f5', onClick: identity},
+    {text: 'This is folder 1', 'key': 'f1', onClick: _onBreadcrumbItemClicked, href: '#/examples/breadcrumb1'},
+    {text: 'This is folder 2', 'key': 'f2', onClick: _onBreadcrumbItemClicked, href: '#/examples/breadcrumb2'},
+    {text: 'This is folder 3', 'key': 'f3', onClick: _onBreadcrumbItemClicked, href: '#/examples/breadcrumb3'},
+    {text: 'Home', 'key': 'f5', onClick: _onBreadcrumbItemClicked, href: '#/examples/breadcrumb4'},
   ],
   menuItems: defaultMenuItems,
   farMenuItems: defaultFarMenuItems,
+}
+
+function _onBreadcrumbItemClicked(ev: React.MouseEvent<HTMLElement>, item: IBreadcrumbItem): void {
+  console.log(`Breadcrumb item with key "${item.key}" has been clicked.`);
 }
 
 
