@@ -17,13 +17,15 @@ export const menuItems = [
           iconProps: {
             iconName: 'Mail'
           },
+          onClick: () => console.log('Email Message')
         },
         {
           key: 'calendarEvent',
           name: 'Calendar event',
           iconProps: {
             iconName: 'Calendar'
-          }
+          },
+          onClick: () => console.log('Calendar')
         }
       ]
     }
@@ -34,7 +36,8 @@ export const menuItems = [
   iconProps: {
     iconName: 'Upload'
   },
-  href: '#'
+  href: '#',
+  onClick: () => console.log('Upload')
 }, {
   key: 'share',
   name: 'Share',
